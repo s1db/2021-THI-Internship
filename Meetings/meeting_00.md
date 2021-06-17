@@ -6,13 +6,13 @@
 - [ ] Briefly go through the current codebase.
 
 
-## Mini-brass Paper Notes (Incomplete)
+## Voting Paper Notes (Incomplete)
 https://docs.google.com/document/d/1mCtHC0vHYQ3Ko_X-VGyC6FiA3jbKV9r93Bb7SOTchLo/edit?usp=sharing
 
 
 
 
-## MAS Chapter 09 Notes
+## MAS Chapter 09 Notes (Incomplete)
 - [x] Section 01
 - [x] Section 02
 - [x] Section 03 -- Voting
@@ -39,7 +39,4 @@ https://docs.google.com/document/d/1mCtHC0vHYQ3Ko_X-VGyC6FiA3jbKV9r93Bb7SOTchLo/
         => No result satisfies all 3.
         - Arrow's Theorem: If |O| ≥ 3, any social welfare function W that is Pareto efficient and independent of irrelevant alternatives is dictatorial.
     - Social choice functions:
-        
-    What I don't have clarity on:    
-        Monotonicity
 - [ ] Section 05 -- Ranking systems
