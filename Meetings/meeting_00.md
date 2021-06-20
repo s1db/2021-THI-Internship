@@ -1,4 +1,6 @@
-# Meeting 0
+# Meeting 00
+
+_Meeting took place on 17th June 2021, at 13:30 IST._
 
 ## Tasks for next meeting
 - [ ] Go through the tooling, Minizinc Python API and CPMpy and pick one.
