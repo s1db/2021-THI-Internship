@@ -8,7 +8,7 @@ _Meeting will take place on 24th June 2021, at 13:30 IST._
     - [ ] Minizinc Python API
         - [ ] Read Documentation.
     - [ ] CPMpy
-        - [ ] Read Documentation.
+        - [x] Read Documentation.
         - [ ] Implement a model.
 - [x] Read up on Copeland method and (weighted) tournament solutions.
 - [x] Briefly go through the current codebase.
