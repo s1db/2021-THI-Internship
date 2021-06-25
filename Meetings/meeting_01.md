@@ -4,12 +4,13 @@ _Meeting will take place on 24th June 2021, at 13:30 IST._
 
 
 ## Tasks for this sprint
-- [ ] Go through the tooling and pick one,
-    - [ ] Minizinc Python API
-        - [ ] Read Documentation.
-    - [ ] CPMpy
+- [x] Go through the tooling and pick one,
+    - [x] Minizinc Python API
         - [x] Read Documentation.
-        - [ ] Implement a model.
+        - [x] Implement a model.
+    - [x] CPMpy
+        - [x] Read Documentation.
+        - [x] Implement a model.
 - [x] Read up on Copeland method and (weighted) tournament solutions.
 - [x] Briefly go through the current codebase.
 
@@ -22,8 +23,16 @@ _Meeting will take place on 24th June 2021, at 13:30 IST._
 - Started work on implementing Copeland Voting in Minizinc
 - Went though Minizinc Python API docs
 ### MON 21th June 2021
+- Worked on the Minizinc model.
+- The model works, it's a little slow due to the result function which can be optimized but I'm stopping now because it gives the right answer.
 ### TUE 22th June 2021
+- Worked on Copeland Method in Python.
+- Went through models from CP course week 1 and 2.
 ### WED 23th June 2021
+- Went through models from CP course week 3.
+### THU 24th June 2021
+- Started work on the copeland meta search.
+- Went through models from CP course week 4.
 
 ## Copeland Method
 - Each agent ranks candidates in order of preference. 
@@ -32,7 +41,7 @@ _Meeting will take place on 24th June 2021, at 13:30 IST._
     - A preference tie occurs when both A and B have an equal number of votes.
 - Copeland Score for a candidate = 
     number of other candidates over whom he or she has a majority preference 
-    + half the number of candidates with whom he or she has a preference tie. NOTE: other variations of 1/0.5/0 and 3/1/0 exist.
+    + half the number of candidates with whom he or she has a preference tie. NOTE: other variations of 1/0.5/0 and 2/1/0 exist.
 - The winner of the election under Copeland's Method is the candidate with the highest Copeland score; under Condorcet's method this candidate wins only if he or she has the maximum possible score of n–1 where n is the number of candidates. Hence victory under this system amounts to satisfying the Condorcet criterion.
 
 ## CPpy vs. Minizinc API
@@ -44,6 +53,7 @@ _Meeting will take place on 24th June 2021, at 13:30 IST._
     - implies(left, right) -- construct of Minizinc(->)
     - all() and any() -- overwritten the python methods.
 - No mechanism for guiding the solver with predicates, unless extended.
+- It's more of a translator at the moment.
 
 ### Minizinc Documentation Notes
 - Predicates and Functions

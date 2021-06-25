@@ -1,0 +1,6 @@
+absl-py==0.13.0
+cpmpy==0.7.1
+numpy==1.21.0
+ortools==9.0.9048
+protobuf==3.17.3
+six==1.16.0
