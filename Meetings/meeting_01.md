@@ -34,6 +34,8 @@ _Meeting will take place on 24th June 2021, at 13:30 IST._
 - Started work on the copeland meta search.
 - Went through models from CP course week 4.
 
+### FRI 25th June 2021
+- Worked on the copeland script
 ## Copeland Method
 - Each agent ranks candidates in order of preference. 
 - We now define 2 situations in pairwise comparisons: 
@@ -68,4 +70,9 @@ _Meeting will take place on 24th June 2021, at 13:30 IST._
         - assert, like test.
     - Defining Functions -- similar to Predicates but with more general return types.
 
+## Meeting Questions
+- [x] Related papers to the search method we discussed last time.
+- [x] Do we have models with a large solution set.
+    - [x] Bus Tour not working
 ## Tasks for next sprint
+Go through the already written code.

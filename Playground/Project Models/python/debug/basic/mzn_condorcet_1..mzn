@@ -1,0 +1,1 @@
+array[AGENTS] of par int: old_score;constraint sum(a in AGENTS) ( bool2int(agent_prefers(a, score[a], old_score[a]) ) ) >= max(AGENTS) div 2;constraint (x != 1 \/ y != 3 \/ control != A);
