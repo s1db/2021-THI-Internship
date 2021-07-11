@@ -1,7 +1,6 @@
 # Based off of https://www.geeksforgeeks.org/lexicographically-n-th-permutation-string/
 
 # With changes to adapt to lists.
-# Python3 program to print nth permutation.
 
 # next_permutation method implementation.
 def next_permutation(L):
@@ -32,34 +31,31 @@ def next_permutation(L):
   
 # Function to print nth permutation
 # using next_permute()
-def nPermute(string, n):
-    string = list(string)
-    new_string = []
+def nPermute(l, n):
+    l = list(l)
+    new_l = []
   
     # Sort the string in lexicographically
     # ascending order
-    string.sort()
+    l.sort()
     j = 2
-  
     # Keep iterating until
     # we reach nth position
-    while next_permutation(string):
-        new_string = string
-  
+    while next_permutation(l):
+        new_l = l
         # check for nth iteration
         if j == n:
             break
         j += 1
-  
     # print string after nth iteration
-    print(new_string)
+    return new_l
   
 # Driver Code
 if __name__ == "__main__":
-    noOfCandidates = 6
-    string = list(range(noOfCandidates))
+    no_cand = 6
+    string = list(range(no_cand))
     n = 36
     nPermute(string, n)
 
 # This code is contributed by
-# sanjeev2552 and sid
+# sanjeev2552 and sidhant bhavnani
