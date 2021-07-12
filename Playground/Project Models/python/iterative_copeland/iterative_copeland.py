@@ -25,7 +25,7 @@ OPEN QUESTIONS NOTE:
     # How does that affect the copeland method?
     # Refer to chapter 10 of comsoc.
 '''
-
+import math
 VOTERS = 5
 CANDIDATES = 4
 
@@ -69,20 +69,25 @@ def copelandScoreFull(scores, no_of_agents, no_of_candidates):
 - Reads list of scores and presents the scores[r][c] value
 '''
 def matrix2list(r, c, scores_list, no_of_voters):
-    if r < c: return no_of_voters - scores_list[int((c*(c+1)/2)-(c-r))]
+    if r < c: return no_of_voters - scores_list[math.ceil((c*(c-1)/2) + r)]
     elif r == c: return 0
-    else: return scores_list[int((r*(r+1)/2)-(r-c))] # Arithmetic Progression Magic! B-)
-
-def list2matrix(i, scores_list):
-    r < c
-    2*i = (r**2 - r + c)
-    this tells us that RHS is even.
-    return None
-
+    else: return scores_list[math.ceil((r*(r-1)/2) + c)] # NOTE: change to roof/floor respectively. Not appropriately tested
+'''
+def list2matrix(k, scores_list):
+    # r < c
+    # 2*i = (r**2 - r + c)
+    2*k = r**2 - r + 2*c
+    r = 
+    c = 
+    i = n - 2 - math.floor(math.sqrt(-8*k + 4*n*(n-1)-7)/2.0 - 0.5)
+    j = k + i + 1 - n*(n-1)/2 + (n-i)*((n-i)-1)/2
+    # this tells us that RHS is even.
+    return (i,j)
+'''
 scores = pairwiseScoreCalcListFull(original_rankings, CANDIDATES)
 
 '''
-    Prints complete score matrix
+    - Prints complete score matrix
 '''
 def fullScoreMatrixOutput():
     for i in range(CANDIDATES):
@@ -91,7 +96,7 @@ def fullScoreMatrixOutput():
             s = s + str(matrix2list(i, j, scores, VOTERS)) + " "
         print(s)
 
-
+fullScoreMatrixOutput()
 '''
 - Compares all preference profiles with each other.
 - Returns a CANDIDATE X CANDIDATE matrix.
@@ -114,7 +119,7 @@ def copelandScore(pref_profile, agents, voters):
         copeland_score.append(scoreCalc(i))
     return copeland_score
 
-
+'''
 # Grows with each addition to the candidates, samples from the original profile.
 i_rankings = []
 i_scores = []
@@ -123,3 +128,4 @@ for x, i in enumerate(original_rankings):
     i_rankings.append(i)
     i_scores = pairwiseScoreCalcListNew(i_scores, i_rankings, x)
     print(i_scores)
+'''

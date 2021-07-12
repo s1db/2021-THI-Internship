@@ -31,13 +31,13 @@ https://docs.google.com/document/d/1mCtHC0vHYQ3Ko_X-VGyC6FiA3jbKV9r93Bb7SOTchLo/
         - Condorcet condition - pairwise winner
         - Sensitivity to a losing candidate -  A third candidate who stands no chance of being selected can thus act as a “spoiler,” changing the selected outcome.
         - Sensitivity to the agenda setter - 
-- [ ] Section 04 --  Social Functions
+- [x] Section 04 --  Social Functions
     - Social welfare functions:
         - Pareto efficiency (PE):
             - Same as strict Pareto efficiency.
         - Independence of irrelevant alternatives(IIA):
             - the selected ordering between two outcomes should depend only on the relative orderings they are given by the agents.
-        - Nondictatorship: That there does not exist a single agent whose preferences always determine the social ordering.
+        - Nondictatorship (ND): That there does not exist a single agent whose preferences always determine the social ordering.
         => No result satisfies all 3.
         - Arrow's Theorem: If |O| ≥ 3, any social welfare function W that is Pareto efficient and independent of irrelevant alternatives is dictatorial.
     - Social choice functions:
