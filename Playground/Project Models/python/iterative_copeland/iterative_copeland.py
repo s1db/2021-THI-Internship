@@ -25,19 +25,35 @@ OPEN QUESTIONS NOTE:
     # How does that affect the copeland method?
     # Refer to chapter 10 of comsoc.
 '''
-import math
+
 VOTERS = 5
 CANDIDATES = 4
 
 # Global value to remember the index location of each iteration.
 OFFSET = 0
 
-#                     V_0 V_1 V_2 V_3 V_4   <-- voters/agents
+#                    V_0 V_1 V_2 V_3 V_4   <-- voters/agents
 original_rankings = [[0,  0,  3,  3,  1],   # C_0
                      [1,  1,  0,  0,  2],   # C_1
                      [2,  2,  1,  1,  3],   # C_2
                      [3,  3,  2,  2,  0]]   # C_3 <-- candidates
                                             # ...
+
+def matrix2list(r, c, scores_list, no_of_voters):
+    if r < c: return no_of_voters - scores_list[(c*(c-1)//2 + r)]
+    elif r == c: return 0
+    else: return scores_list[(r*(r-1)//2 + c)] # NOTE: change to roof/floor respectively. Not appropriately tested
+
+def list2matrix(k):
+    # NOTE: Very bad implementation, could possibly just be an equation.
+    # It works though!!
+    r = 1
+    while r*(r-1)/2 <= k:
+        r += 1
+    r = r - 1
+    c = k - (r*(r-1)//2)
+    return (r,c)
+
 
 
 '''
@@ -54,6 +70,10 @@ def pairwiseScoreCalcListFull(pref_profile, no_of_candidates):
             scores.append(sum([pref_profile[i][k] < pref_profile[j][k] for k in range(VOTERS)]))
     return scores
 
+# print("-----🌟-----")
+# print(pairwiseScoreCalcListFull(original_rankings, CANDIDATES))
+# print("-----🌟-----")
+
 '''
     - Similar to the code above.
     - Difference being that it doesn't recompute all scores, just appends to the 'scores list'.
@@ -65,11 +85,16 @@ def pairwiseScoreCalcListNew(pref_profile, no_of_candidates):
         new_scores.append(sum([pref_profile[no_of_candidates][k] < pref_profile[j][k] for k in range(VOTERS)]))
     return new_scores
 
+# print("-----🌟-----")
+# print(pairwiseScoreCalcListNew(original_rankings, 2))
+# print("-----🌟-----")
+
+
 def copelandScoreFull(scores, no_of_agents, no_of_candidates):
     final_score = [0]*no_of_candidates
     for x, i in enumerate(scores):
         r, c = list2matrix(x)
-        if i > no_of_agents//2:
+        if i > no_of_agents/2:
             final_score[r] += 1
         elif i == no_of_agents/2:
             final_score[r] += 0.5
@@ -78,6 +103,12 @@ def copelandScoreFull(scores, no_of_agents, no_of_candidates):
             final_score[c] += 1
 
     return final_score
+
+# print("-----🌟-----")
+# print(copelandScoreFull(pairwiseScoreCalcListFull(original_rankings, CANDIDATES), VOTERS, CANDIDATES))
+# print("-----🌟-----")
+
+
 '''
     - new_scores are the scores of the addition of a new candidate(the pairwise scores).
     - final_score are the final copeland scores.
@@ -104,34 +135,21 @@ def copelandScoreNew(new_scores, final_score, no_of_agents):
 - Reads list of scores and presents the scores[r][c] value
 '''
 
-def matrix2list(r, c, scores_list, no_of_voters):
-    if r < c: return no_of_voters - scores_list[(c*(c-1)//2 + r)]
-    elif r == c: return 0
-    else: return scores_list[(r*(r-1)//2 + c)] # NOTE: change to roof/floor respectively. Not appropriately tested
 
-def list2matrix(k):
-    # NOTE: Very bad implementation, could possibly just be an equation.
-    # It works though!!
-    r = 0
-    while r*(r-1)/2 <= k:
-        r += 1
-    r = r - 1
-    c = k - r*(r-1)//2
-    return (r,c)
-
-scores = pairwiseScoreCalcListFull(original_rankings, CANDIDATES)
-final_scores = copelandScoreFull(scores, VOTERS, CANDIDATES)
-print(scores)
-print(final_scores)
+# scores = pairwiseScoreCalcListFull(original_rankings, CANDIDATES)
+# final_scores = copelandScoreFull(scores, VOTERS, CANDIDATES)
+# print(scores)
+# print(final_scores)
 
 '''
     - Prints complete pairwise score matrix
 '''
+@DeprecationWarning
 def fullScoreMatrixOutput():
     for i in range(CANDIDATES):
         s = ""
         for j in range(CANDIDATES):
-            s = s + str(matrix2list(i, j, scores, VOTERS)) + " "
+            s = s + str(matrix2list(i, j, original_rankings, VOTERS)) + " "
         print(s)
 # fullScoreMatrixOutput()
 
@@ -168,4 +186,3 @@ for x, i in enumerate(original_rankings):
     i_final_scores = copelandScoreNew(i_scores, i_final_scores, VOTERS)
     # print("Pairwise Scores: " + str(i_scores))
     print("Final Score: " + str(i_final_scores))
-    

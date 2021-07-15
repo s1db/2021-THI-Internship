@@ -54,8 +54,8 @@ def nPermute(l, n):
 if __name__ == "__main__":
     no_cand = 6
     string = list(range(no_cand))
-    n = 36
-    nPermute(string, n)
+    n = 5
+    print(nPermute(string, n))
 
 # This code is contributed by
 # sanjeev2552 and sidhant bhavnani
