@@ -39,10 +39,19 @@ original_rankings = [[0,  0,  3,  3,  1],   # C_0
                      [3,  3,  2,  2,  0]]   # C_3 <-- candidates
                                             # ...
 
+example_rankings = [[1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2], # A
+                    [3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0], # B
+                    [2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3], # C
+                    [0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1]] # D
+
+video = [[0, 0, 0, 0, 2, 2, 2, 1, 1, 1],
+         [2, 1, 1, 1, 1, 1, 1, 0, 0, 0],
+         [1, 2, 2, 2, 0, 0, 0, 2, 2, 2]]
+
 def matrix2list(r, c, scores_list, no_of_voters):
-    if r < c: return no_of_voters - scores_list[(c*(c-1)//2 + r)]
+    if r < c: return no_of_voters - scores_list[int(c*(c-1)//2 + r)]
     elif r == c: return 0
-    else: return scores_list[(r*(r-1)//2 + c)] # NOTE: change to roof/floor respectively. Not appropriately tested
+    else: return scores_list[(r*(r-1)//2 + c)]
 
 def list2matrix(k):
     # NOTE: Very bad implementation, could possibly just be an equation.
@@ -63,15 +72,17 @@ def list2matrix(k):
     - A visual proof for how this works and why it can be done iteratively with the addition of a new candidate: 
         https://docs.google.com/presentation/d/1QSrd2i72x5r1nJ_GzHoGXJsJYefKVytp2YtCwlCuWYo/edit?usp=sharing
 '''
-def pairwiseScoreCalcListFull(pref_profile, no_of_candidates):
+def pairwiseScoreCalcListFull(pref_profile, no_of_candidates, no_of_agents):
     scores = []
     for i in range(no_of_candidates):
         for j in range(i):
-            scores.append(sum([pref_profile[i][k] < pref_profile[j][k] for k in range(VOTERS)]))
+            comparison_bool_list = [pref_profile[i][k] < pref_profile[j][k] for k in range(no_of_agents)]
+            pairwise_comparison_score = sum(comparison_bool_list)
+            scores.append(pairwise_comparison_score)
     return scores
 
 # print("-----🌟-----")
-# print(pairwiseScoreCalcListFull(original_rankings, CANDIDATES))
+# print(pairwiseScoreCalcListFull(example_rankings, len(example_rankings)))
 # print("-----🌟-----")
 
 '''
@@ -90,7 +101,7 @@ def pairwiseScoreCalcListNew(pref_profile, no_of_candidates):
 # print("-----🌟-----")
 
 
-def copelandScoreFull(scores, no_of_agents, no_of_candidates):
+def copelandScoreFull(scores, no_of_candidates, no_of_agents):
     final_score = [0]*no_of_candidates
     for x, i in enumerate(scores):
         r, c = list2matrix(x)
@@ -105,7 +116,7 @@ def copelandScoreFull(scores, no_of_agents, no_of_candidates):
     return final_score
 
 # print("-----🌟-----")
-# print(copelandScoreFull(pairwiseScoreCalcListFull(original_rankings, CANDIDATES), VOTERS, CANDIDATES))
+# print(copelandScoreFull(pairwiseScoreCalcListFull(example_rankings, len(example_rankings)), len(example_rankings[0]), len(example_rankings)))
 # print("-----🌟-----")
 
 
@@ -144,14 +155,18 @@ def copelandScoreNew(new_scores, final_score, no_of_agents):
 '''
     - Prints complete pairwise score matrix
 '''
-@DeprecationWarning
-def fullScoreMatrixOutput():
-    for i in range(CANDIDATES):
+
+def fullScoreMatrixOutput(scores_list, candidates, no_of_voters):
+    for i in range(candidates):
         s = ""
-        for j in range(CANDIDATES):
-            s = s + str(matrix2list(i, j, original_rankings, VOTERS)) + " "
+        for j in range(candidates):
+            s = s + str(matrix2list(i, j, scores_list, no_of_voters)) + " "
         print(s)
-# fullScoreMatrixOutput()
+
+# score_list = pairwiseScoreCalcListFull(example_rankings, len(example_rankings), len(example_rankings[0]))
+# print(score_list)
+# fullScoreMatrixOutput(score_list, len(example_rankings), len(example_rankings[0]))
+# print(copelandScoreFull(score_list, len(example_rankings), len(example_rankings[0])))
 
 '''
 - Compares all preference profiles with each other.
@@ -175,14 +190,14 @@ def copelandScore(pref_profile, agents, voters):
         copeland_score.append(scoreCalc(i))
     return copeland_score
 
-# Grows with each addition to the candidates, samples from the original profile.
-i_rankings = []
-i_scores = []
-i_final_scores = []
-# Adds new agents, one at a time.
-for x, i in enumerate(original_rankings):
-    i_rankings.append(i) # Addition of a new candidate from the original profile.
-    i_scores = pairwiseScoreCalcListNew(i_rankings, x)
-    i_final_scores = copelandScoreNew(i_scores, i_final_scores, VOTERS)
-    # print("Pairwise Scores: " + str(i_scores))
-    print("Final Score: " + str(i_final_scores))
+# # Grows with each addition to the candidates, samples from the original profile.
+# i_rankings = []
+# i_scores = []
+# i_final_scores = []
+# # Adds new agents, one at a time.
+# for x, i in enumerate(original_rankings):
+#     i_rankings.append(i) # Addition of a new candidate from the original profile.
+#     i_scores = pairwiseScoreCalcListNew(i_rankings, x)
+#     i_final_scores = copelandScoreNew(i_scores, i_final_scores, VOTERS)
+#     # print("Pairwise Scores: " + str(i_scores))
+#     print("Final Score: " + str(i_final_scores))
