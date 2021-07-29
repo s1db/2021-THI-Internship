@@ -1,6 +1,7 @@
 import random
 from lex_ordering_permute import nPermute
 import numpy as np
+from fuzzing import fuzzing
 
 def clustering(size_of_cluster, no_of_clusters, shuffle):
     new_arr = []
@@ -9,6 +10,7 @@ def clustering(size_of_cluster, no_of_clusters, shuffle):
             new_arr.append(random.sample(list(range(i*size_of_cluster, (i+1)*size_of_cluster)), size_of_cluster))
         else: 
             new_arr.append(list(range(i*size_of_cluster, (i+1)*size_of_cluster)))
+    print(new_arr)
     return new_arr
 
 def biased_clustered_profile(size_of_cluster, no_of_clusters, distribution, shuffle, lex_ordered):
@@ -32,12 +34,12 @@ def biased_clustered_profile(size_of_cluster, no_of_clusters, distribution, shuf
         result = np.concatenate((result, tiled_preference), axis=1)
     return result[:,1:]
 
-# Driver Code
+# Driver Code for testing
 if __name__ == "__main__":
     size_of_cluster = 3
     no_of_clusters = 3
-    pref_profile = biased_clustered_profile(size_of_cluster, no_of_clusters, [1,1,1], False, False)    
-    print(pref_profile)
+    pref_profile = biased_clustered_profile(size_of_cluster, no_of_clusters, [6,3,1], False, True)    
+    print(fuzzing(pref_profile, 3))
 
 
 # A cluster preference template like 60% have the bias to a certain cluster.

@@ -2,10 +2,6 @@ import unittest
 import iterative_copeland as ic
 
 class TestIterativeCopelandMethods(unittest.TestCase):
-    #                   V_0 V_1 V_2 V_3 V_4   <-- voters/agents
-
-    # https://courses.lumenlearning.com/waymakermath4libarts/chapter/copelands-method/
-    # Only the first part, without D deleted.
     
     def test_example(self):
         wiki_rankings = [[0,  0,  3,  3,  1],   # C_0
@@ -20,6 +16,8 @@ class TestIterativeCopelandMethods(unittest.TestCase):
         final_copeland_score = ic.copelandScoreFull(example_score_list, len(wiki_rankings), len(wiki_rankings[0]))
         self.assertEqual(final_copeland_score, wiki_copeland_scores)
         
+    # https://courses.lumenlearning.com/waymakermath4libarts/chapter/copelands-method/
+    # Only the first part, without D deleted.
     def test_wiki(self):
         example_rankings = [[1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2],
                            [3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],

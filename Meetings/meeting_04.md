@@ -1,6 +1,6 @@
 # Meeting 04
 
-_Meeting will take place on 14th July 2021, at 14:30 IST._
+_Meeting will take place on 15th July 2021, at 14:30 IST._
 
 ## Points of discussion
 - The present state of the Iterative Copeland script.
@@ -17,7 +17,11 @@ _Meeting will take place on 14th July 2021, at 14:30 IST._
     - Bipolar distribution.
     - Median voter theorem.
     - A distribution.(i.e 60:40)
-- Add paramterised randomness to the solution rankings.
-- Write a 'noise' function
-- Unit Tests.
 ## Next steps
+- [x] Write unit tests for current code.
+- [x] Voter template classes
+    - [x] Add parametrized randomness to the solution rankings. - Write a 'noise' function.
+    - [x] Clean the code.
+    - [x] Bipolar distribution.
+    - [x] Median voter theorem.
+    - [x] Take distributions as inputs.
