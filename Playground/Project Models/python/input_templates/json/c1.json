@@ -3,11 +3,10 @@
     "frequency": true, 
     "copeland_score": true, 
     "minizinc_data": true, 
-    "fuzz": 5, 
-    "random": false, 
-    "distribution": [1, 1, 1, 1], 
+    "random": true, 
+    "distribution": [3,6], 
     "unipolar": null, 
-    "bipolar": null, 
+    "bipolar": 5, 
     "cluster": null, 
-    "normal": 5
+    "normal": null
 }

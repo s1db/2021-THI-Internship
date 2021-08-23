@@ -9,7 +9,7 @@ from helpers.iterative_copeland.iterative_copeland import pairwiseScoreCalcListF
 
 import argparse
 import json
-
+import pickle
 
 parser = argparse.ArgumentParser()
 # Auxiliary arguments
@@ -43,6 +43,9 @@ parser.add_argument('--cluster', '-c', type=int, nargs=2,
 parser.add_argument('--normal', '-n', type=int,
                     help='A generic voting pattern. Specify the number of candidates.')
 
+parser.add_argument('--pickle', '-p', action='store_true',
+                    help='Stores a pickled version of the voter profile.')
+
 args = parser.parse_args()
 preference_profile = None
 
@@ -75,7 +78,6 @@ elif args.bipolar:
     preference_profile = bipolar(
         args.bipolar, args.distribution[0], args.distribution[1])
 elif args.cluster:
-    # NOTE: Fix randomization for clustered template
     preference_profile = biased_clustered_profile(
         args.cluster[0], args.cluster[1], args.distribution, False, args.random)
 elif args.normal:
@@ -101,12 +103,18 @@ if args.minizinc_data:
     dzn_pref_profile = 'rankings = array2d(CANDIDATES, AGENTS,'+dzn_pref_profile+');\n'
     dzn_lines.append(dzn_pref_profile)
     if args.copeland_score:
-        dzn_lines.append("copeland = "+str(copeland_score)+"\n")
+        dzn_lines.append("copeland = "+str(copeland_score)+";\n")
     with open('profile.dzn', 'w') as f:
         f.writelines(dzn_lines)
 
+if args.pickle:
+    with open('profile.vt', 'wb') as f:
+        pickle.dump(preference_profile, f)
+        if args.copeland_score:
+            pickle.dump(copeland_score, f)
+
 '''
-Notes
+NOTE
     Arguments:
         type:
             --unipolar  -u  -- no_of_candidates

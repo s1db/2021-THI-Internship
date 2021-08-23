@@ -5,10 +5,13 @@ import matplotlib.pyplot as plt
 def borda_count_frequency(preference_profile, show_plot):
     rows, cols = preference_profile.shape[0], preference_profile.shape[1]
     counts = dict.fromkeys(range(0, cols), 0)
+    print(counts)
     for x in range(0, rows):
         for y in range(0, cols):
             # Calculates the individual borda counts and sums them up
             counts[y] += rows - preference_profile[x,y]
+            print(rows - preference_profile[x,y])
+    print(counts)
     if show_plot:
         candidate = list(counts.keys())
         values = list(counts.values())
