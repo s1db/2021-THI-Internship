@@ -17,7 +17,7 @@ from array import array
 import matplotlib.pyplot as plt
 
 # Reading pickled files and storing the data.
-pickled_file = open("voter_profiles/bipolar_large.vt", "rb")
+pickled_file = open("voter_profiles/random_large.vt", "rb")
 preference_profile = pickle.load(pickled_file)
 true_copeland_score = None
 
@@ -54,7 +54,7 @@ def deletionCopeland(preference_profile, step, deletion_ratio):
     copeland_score = ic.copelandScoreFull(score_list, len(i_preference_profile), agents)
     return (i_preference_profile, copeland_score)
 
-ipp, cs = deletionCopeland(preference_profile, 20, 0.2)
+ipp, cs = deletionCopeland(preference_profile, 100, 0.1)
 print("--------")
 print(len(ipp) == len(cs))
 print("--------")
