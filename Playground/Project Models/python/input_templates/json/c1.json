@@ -1,0 +1,12 @@
+{
+    "json": "json/c1.json", 
+    "frequency": true, 
+    "copeland_score": true, 
+    "minizinc_data": true, 
+    "random": true, 
+    "distribution": [3,6], 
+    "unipolar": null, 
+    "bipolar": 5, 
+    "cluster": null, 
+    "normal": null
+}
