@@ -44,8 +44,9 @@ array[AGENTS] of var 0..2: util_per_agent;
 constraint forall(a in AGENTS)
                    (util_per_agent[a] = bool2int(agent_of_position[position_of_agent[a] - 1] in friends[a] ) 
                                        + bool2int(agent_of_position[position_of_agent[a] + 1] in friends[a]));
+
+solve satisfy;
 % var 0..2*n_agents: social_welfare;
 % constraint social_welfare = sum(util_per_agent);                                              
                                                    
 % solve maximize social_welfare;
-solve satisfy;

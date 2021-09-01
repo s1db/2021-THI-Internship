@@ -16,6 +16,16 @@ Date: 2021-08-26 0900 BST
     - play around with small instances. (5)
 ## Tasks
 - TUE:
-    - [ ] Try implementing the photo assignment problem purely in MiniZinc.
     - [ ] Try implementing the photo assignment problem in Python+MiniZinc.
+        - multiple agents, specified by the program.
+        - each votes on a solution, 'satisfied' by having either 2 of its friends around itself.
+            - thus, the ranking is essentially just 0 or 1 or 2 by each agent on a certain solution.
+        - [x] Read model
+        - [x] Read and apply inputs to the imported model.
+        - [x] Solve the model. 
+        - [x] Reads solutions from set of solutions.
+            - [x] Gets the preferences of each solution.
+        - [x] Computes the copeland score for the set of solutions.
+    - [ ] Turn into a Python class.
+    
     - [ ] Read up on weighted tournaments.
