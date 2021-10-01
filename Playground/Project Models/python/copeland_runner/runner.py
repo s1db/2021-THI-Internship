@@ -1,12 +1,17 @@
 from minizinc import Instance, Model, Solver
 from iterative_copeland import *
 
+'''
+- [x] Create class.
+- [ ] Create more test cases.
+'''
+
 gecode = Solver.lookup("gecode")
 
 model = Model("minizinc/photo_agents.mzn")
 
 instance = Instance(gecode, model)
-instance.add_file("minizinc/photo_agents1.dzn")
+instance.add_file("minizinc/photo_agents3.dzn")
 
 
 result = instance.solve(all_solutions=True)

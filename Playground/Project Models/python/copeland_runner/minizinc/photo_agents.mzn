@@ -8,7 +8,7 @@
 %
 %-----------------------------------------------------------------------------
 include "globals.mzn";
-
+include "simple_diversity_mixin.mzn";
 %-----------------------------------------------------------------------------
 % Specification
 
@@ -42,11 +42,11 @@ constraint
 
 array[AGENTS] of var 0..2: util_per_agent;
 constraint forall(a in AGENTS)
-                   (util_per_agent[a] = bool2int(agent_of_position[position_of_agent[a] - 1] in friends[a] ) 
-                                       + bool2int(agent_of_position[position_of_agent[a] + 1] in friends[a]));
+                   (util_per_agent[a] = 2- (bool2int(agent_of_position[position_of_agent[a] - 1] in friends[a]) 
+                                       + bool2int(agent_of_position[position_of_agent[a] + 1] in friends[a])));
 
-solve satisfy;
+% solve satisfy;
 % var 0..2*n_agents: social_welfare;
-% constraint social_welfare = sum(util_per_agent);                                              
-                                                   
+% constraint social_welfare = sum(util_per_agent);
+diversity_variables_of_interest = position_of_agent     
 % solve maximize social_welfare;
