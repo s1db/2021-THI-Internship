@@ -64,14 +64,12 @@ def plot(filename):
     ax1.legend(['Copeland Score Post Deletion', 'Real Copeland Score'])
     ax1.set_xlabel('Candidate IDs')
     ax1.set_ylabel('Normalised Copeland Score')
-
-    # plt.hist(true_copeland_score, bins=np.arange(
-    #     min(true_copeland_score), max(true_copeland_score)+1), color='w')
-    plt.show()
+    plt.savefig("plots/"+filename)
+    # plt.show()
 for i in ["inverted", "normal", "random", "search_more"]:
-    for j in ['5']:
-        # try:
-        plot(i+str(j))
-        print(i+str(j))
-        # except:
-        #     None
+    for j in ['4','5','6']:
+        try:
+            plot(i+str(j))
+            print(i+str(j))
+        except:
+            None

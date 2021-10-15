@@ -3,10 +3,10 @@ NOTE:
 - [x] Create voter profiles
     - [x] Write code to pickle the profiles.
     - [x] Generate profiles and see if they can be opened.
-- [x] Implement the iterative version of adding and deleting candidates (2 hours)
-    - [x] Implement the iterative version of adding. (30 minutes)
-    - [x] Implement the deleting feature. (1 hour)
-- [x] Compare the results of the new Copeland score with the original Copeland score to see if it got the winners right. (3 hours)
+- [x] Implement the iterative version of adding and deleting candidates 
+    - [x] Implement the iterative version of adding.
+    - [x] Implement the deleting feature.
+- [x] Compare the results of the new Copeland score with the original Copeland score to see if it got the winners right. 
 '''
 
 import iterative_copeland as ic

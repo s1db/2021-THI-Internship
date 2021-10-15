@@ -12,10 +12,10 @@ print("Hello you")
 
 import logging
 import os
+
 logging.basicConfig(filename="minizinc-python.log", level=logging.DEBUG)
 
 from minizinc import Instance, Model, Result, Solver, Status
-from minizinc import Instance, Model, Solver
 
 # Load n-Queens model from file
 small_model = Model("./small.mzn")
@@ -81,6 +81,3 @@ while search_more:
         if search_more:
             next_sol_vars = res[variables_of_interest_key]  # copy the current solution variables
             solution_pool += next_sol_vars
-
-
-
