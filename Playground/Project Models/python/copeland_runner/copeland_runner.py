@@ -14,7 +14,8 @@ class CopelandRunner:
         self.max = max
         self.winner_set = []
     def run(self):
-        self.inst.add_file(self.datafile)
+        try:
+            self.inst.add_file(self.datafile)
         self.inst.add_string("old_solutions = [];")
         self.result = self.inst.solve(all_solutions=True)
         self.rankings = [self.result[i, "util_per_agent"] for i in range(len(self.result))]
@@ -39,8 +40,8 @@ class CopelandRunner:
     
 if __name__ == "__main__":
     gecode = Solver.lookup("gecode")
-    model = Model("minizinc/photo_agents.mzn")
-    datafile = "minizinc/photo_agents4.dzn"
+    model = Model("minizinc/project_matching/project_matching.mzn")
+    datafile = "" #"minizinc/photo_agents4.dzn"
     copeland_runner = CopelandRunner(model, gecode, datafile)
     copeland_runner.run()
     print(copeland_runner.copeland_scores)
